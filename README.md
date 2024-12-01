@@ -7,15 +7,15 @@ editar e excluir pedidos.
 
 
 Tabela de Conteúdos
-• Visão Geral
-• Funcionalidades
-• Tecnologias Utilizadas
-• Pré-requisitos
-• Instalação
-• Uso
-• Estrutura de Arquivos
-• Endpoints da API
-• Licença
+- Visão Geral
+- Funcionalidades
+- Tecnologias Utilizadas
+- Pré-requisitos
+- Instalação
+- Uso
+- Estrutura de Arquivos
+- Endpoints da API
+- Licença
 
 
 # Visão Geral
@@ -34,25 +34,25 @@ O sistema permite que usuários possam gerenciar pedidos de forma intuitiva e ef
 - Interface Responsiva: Totalmente adaptada para dispositivos móveis e desktops.
 
 # Tecnologias Utilizadas
-- FrontEnd
-• React com Vite: Construção e organização da interface.
-• TailwindCSS: Estilização rápida e responsiva.
-• Shadcn: Gerenciamento de modais e componentes UI avançados.
+- FrontEnd:
+- React com Vite: Construção e organização da interface.
+- TailwindCSS: Estilização rápida e responsiva.
+- Shadcn: Gerenciamento de modais e componentes UI avançados.
 
-- BackEnd
-• Node.js com Express: Servidor e API RESTful.
-• PostgreSQL: Banco de dados relacional para armazenamento de informações.
+- BackEnd:
+- Node.js com Express: Servidor e API RESTful.
+- PostgreSQL: Banco de dados relacional para armazenamento de informações.
 
 - Outras Ferramentas
-• Axios: Comunicação entre FrontEnd e BackEnd.
-• Radix UI: Gerenciamento de acessibilidade e modais.
-• Biome: Padrões de código.
+- Axios: Comunicação entre FrontEnd e BackEnd.
+- Radix UI: Gerenciamento de acessibilidade e modais.
+- Biome: Padrões de código.
 
 # Pré-requisitos
 Antes de começar, você precisará ter instalado em sua máquina:
-• Node.js (versão 16 ou superior)
-• PostgreSQL (versão 14 ou superior)
-• Git
+- Node.js (versão 16 ou superior)
+- PostgreSQL (versão 14 ou superior)
+- Git
 
 # Instalação
 1. Clone o Repositório
@@ -110,8 +110,8 @@ npm run dev
 
 # Uso
 Acesse o FrontEnd pelo navegador:
-• URL: http://localhost:5173
-• Adicione, edite ou exclua pedidos diretamente pela interface.
+- URL: http://localhost:5173
+- Adicione, edite ou exclua pedidos diretamente pela interface.
 
 Estrutura de Arquivos:
 ```
@@ -132,12 +132,12 @@ Estrutura de Arquivos:
 ```
 # Endpoints da API
 1. Listar Pedidos
-• Método: GET
-• URL: /pedidos
-• Descrição: Retorna todos os pedidos cadastrados.
+- Método: GET
+- URL: /pedidos
+- Descrição: Retorna todos os pedidos cadastrados.
 
 2. Adicionar Pedido
-• Método: POST
+- Método: POST
 URL: 
 ```
 /pedidos
@@ -153,7 +153,7 @@ Body:
 ```
 
 3. Editar Pedido
-• Método: PUT
+- Método: PUT
 URL: 
 ```
 /pedidos/:id
@@ -169,7 +169,7 @@ Body:
 ```
 
 4. Excluir Pedido
-• Método: DELETE
+- Método: DELETE
 URL: 
 ```
 /pedidos/:id
