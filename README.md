@@ -35,24 +35,24 @@ O sistema permite que usuários possam gerenciar pedidos de forma intuitiva e ef
 
 # Tecnologias Utilizadas
 - FrontEnd
-• React com Vite: Construção e organização da interface.
-• TailwindCSS: Estilização rápida e responsiva.
-• Shadcn: Gerenciamento de modais e componentes UI avançados.
+• React com Vite: Construção e organização da interface.<br>
+• TailwindCSS: Estilização rápida e responsiva.<br>
+• Shadcn: Gerenciamento de modais e componentes UI avançados.<br>
 
 - BackEnd
-• Node.js com Express: Servidor e API RESTful.
-• PostgreSQL: Banco de dados relacional para armazenamento de informações.
+• Node.js com Express: Servidor e API RESTful.<br>
+• PostgreSQL: Banco de dados relacional para armazenamento de informações.<br>
 
 - Outras Ferramentas
-• Axios: Comunicação entre FrontEnd e BackEnd.
-• Radix UI: Gerenciamento de acessibilidade e modais.
-• Biome: Padrões de código.
+• Axios: Comunicação entre FrontEnd e BackEnd.<br>
+• Radix UI: Gerenciamento de acessibilidade e modais.<br>
+• Biome: Padrões de código.<br>
 
 # Pré-requisitos
-Antes de começar, você precisará ter instalado em sua máquina:
-• Node.js (versão 16 ou superior)
-• PostgreSQL (versão 14 ou superior)
-• Git
+Antes de começar, você precisará ter instalado em sua máquina:<br>
+• Node.js (versão 16 ou superior)<br>
+• PostgreSQL (versão 14 ou superior)<br>
+• Git<br>
 
 # Instalação
 1. Clone o Repositório
@@ -60,8 +60,8 @@ Antes de começar, você precisará ter instalado em sua máquina:
 git clone https://github.com/altcomvis/scenario1.git
   cd scenario1
 ```
-2. Configuração do BackEnd
-- Acesse o diretório do BackEnd:
+2. Configuração do BackEnd<br>
+Acesse o diretório do BackEnd:
 ```
   cd backend
 ```
@@ -87,8 +87,8 @@ Inicie o servidor:
 npm run dev
 ```
 
-3. Configuração do FrontEnd
-- Acesse o diretório do FrontEnd:
+3. Configuração do FrontEnd<br>
+Acesse o diretório do FrontEnd:
 ```
 cd frontend
 ```
@@ -109,9 +109,9 @@ npm run dev
 ```
 
 # Uso
-Acesse o FrontEnd pelo navegador:
-• URL: http://localhost:5173
-• Adicione, edite ou exclua pedidos diretamente pela interface.
+Acesse o FrontEnd pelo navegador:<br>
+• URL: http://localhost:5173<br>
+• Adicione, edite ou exclua pedidos diretamente pela interface.<br>
 
 Estrutura de Arquivos:
 ```
@@ -131,13 +131,13 @@ Estrutura de Arquivos:
 │   └── .env                       # Configurações de ambiente do FrontEnd
 ```
 # Endpoints da API
-1. Listar Pedidos
-• Método: GET
-• URL: /pedidos
-• Descrição: Retorna todos os pedidos cadastrados.
+1. Listar Pedidos<br>
+• Método: GET<br>
+• URL: /pedidos<br>
+• Descrição: Retorna todos os pedidos cadastrados.<br>
 
-2. Adicionar Pedido
-• Método: POST
+2. Adicionar Pedido<br>
+• Método: POST<br>
 URL: 
 ```
 /pedidos
@@ -152,8 +152,8 @@ Body:
 }
 ```
 
-3. Editar Pedido
-• Método: PUT
+3. Editar Pedido<br>
+• Método: PUT<br>
 URL: 
 ```
 /pedidos/:id
@@ -168,8 +168,8 @@ Body:
 }
 ```
 
-4. Excluir Pedido
-• Método: DELETE
+4. Excluir Pedido<br>
+• Método: DELETE<br>
 URL: 
 ```
 /pedidos/:id
