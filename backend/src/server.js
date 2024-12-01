@@ -1,29 +1,26 @@
-const express = require('express');
 const cors = require('cors');
-const pool = require('./modules/db'); // Assumindo que você configurou o pool corretamente
-
+const express = require('express');
 const app = express();
 
 const corsOptions = {
-  origin: 'https://scenario1-lilac.vercel.app', // Substitua pela URL do seu frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://scenario1-lilac.vercel.app', // Substitua pela URL do frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
 };
 
-app.use(cors(corsOptions));
-app.use(express.json()); // Processa JSON no corpo das requisições
+app.use(cors(corsOptions)); // Configuração CORS
+app.use(express.json()); // Permite JSON no corpo das requisições
 
-
-// Rotas
-app.get('/pedidos', async (req, res) => {
+// Suas rotas aqui
+app.get('/api/pedidos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM pedidos');
     res.json(result.rows);
   } catch (err) {
-    console.error(err.message);
     res.status(500).send('Erro no servidor');
   }
 });
+
 
 app.post('/pedidos', async (req, res) => {
   const { vendedor, produto, quantidade, status } = req.body;
