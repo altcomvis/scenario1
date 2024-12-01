@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import EditPedido from './components/edit-pedido'
 import AddPedido from './components/add-pedido'
+import EditPedido from './components/edit-pedido'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
