@@ -57,9 +57,10 @@ Git
 # Instalação
 1. Clone o Repositório
 
+```
 git clone https://github.com/altcomvis/scenario1.git
   cd scenario1
-
+```
 2. Configuração do BackEnd
 Acesse o diretório do BackEnd:
   cd backend
@@ -71,27 +72,28 @@ Crie o banco de dados no PostgreSQL:
   CREATE DATABASE pedidos;
 
 Configure o arquivo .env:
+```
   DB_HOST=localhost
   DB_PORT=5432
   DB_USER=postgres
   DB_PASSWORD=sua_senha
   DB_NAME=pedidos
-
+```
 Inicie o servidor:
-npm run dev
+```npm run dev```
 
 3. Configuração do FrontEnd
 Acesse o diretório do FrontEnd:
-cd frontend
+```cd frontend```
 
 Instale as dependências:
-npm install
+```npm install```
 
 Configure o arquivo .env:
-VITE_API_URL=http://localhost:3000
+```VITE_API_URL=http://localhost:3000```
 
 Inicie o FrontEnd:
-npm run dev
+```npm run dev```
 
 # Uso
 Acesse o FrontEnd pelo navegador:
@@ -125,23 +127,23 @@ Descrição: Retorna todos os pedidos cadastrados.
 Método: POST
 URL: /pedidos
 Body:
-{
+```{
   "vendedor": "João",
   "produto": "Caneta",
   "quantidade": 10,
   "status": "pendente"
-}
+}```
 
 3. Editar Pedido
 Método: PUT
 URL: /pedidos/:id
 Body:
-{
+```{
   "vendedor": "Maria",
   "produto": "Lápis",
   "quantidade": 20,
   "status": "aprovado"
-}
+}```
 
 4. Excluir Pedido
 Método: DELETE
