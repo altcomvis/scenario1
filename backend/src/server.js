@@ -4,9 +4,15 @@ const pool = require('./modules/db'); // Assumindo que você configurou o pool c
 
 const app = express();
 
-// Middlewares
-app.use(cors());
-app.use(express.json()); // Permite que o Express processe JSON
+const corsOptions = {
+  origin: 'https://scenario1-lilac.vercel.app', // Substitua pela URL do seu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+app.use(express.json()); // Processa JSON no corpo das requisições
+
 
 // Rotas
 app.get('/pedidos', async (req, res) => {
