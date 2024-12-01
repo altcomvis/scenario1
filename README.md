@@ -21,38 +21,38 @@ Tabela de Conteúdos
 # Visão Geral
 O sistema permite que usuários possam gerenciar pedidos de forma intuitiva e eficiente. Com ele, é possível:
 
-Cadastrar novos pedidos.
-Atualizar informações dos pedidos existentes.
-Excluir pedidos indesejados.
-Visualizar a lista de pedidos em uma interface amigável.
-O objetivo principal é demonstrar a integração entre o FrontEnd (React) e o BackEnd (Node.js com PostgreSQL).
+- Cadastrar novos pedidos.
+- Atualizar informações dos pedidos existentes.
+- Excluir pedidos indesejados.
+- Visualizar a lista de pedidos em uma interface amigável.
+- O objetivo principal é demonstrar a integração entre o FrontEnd (React) e o BackEnd (Node.js com PostgreSQL).
 
 # Funcionalidades
-Adicionar Pedidos: Insira dados como vendedor, produto, quantidade e status.
-Editar Pedidos: Atualize as informações dos pedidos diretamente na interface.
-Excluir Pedidos: Remova pedidos da lista com facilidade.
-Interface Responsiva: Totalmente adaptada para dispositivos móveis e desktops.
+- Adicionar Pedidos: Insira dados como vendedor, produto, quantidade e status.
+- Editar Pedidos: Atualize as informações dos pedidos diretamente na interface.
+- Excluir Pedidos: Remova pedidos da lista com facilidade.
+- Interface Responsiva: Totalmente adaptada para dispositivos móveis e desktops.
 
 # Tecnologias Utilizadas
 - FrontEnd
-React com Vite: Construção e organização da interface.
-TailwindCSS: Estilização rápida e responsiva.
-Shadcn: Gerenciamento de modais e componentes UI avançados.
+• React com Vite: Construção e organização da interface.
+• TailwindCSS: Estilização rápida e responsiva.
+• Shadcn: Gerenciamento de modais e componentes UI avançados.
 
 - BackEnd
-Node.js com Express: Servidor e API RESTful.
-PostgreSQL: Banco de dados relacional para armazenamento de informações.
+• Node.js com Express: Servidor e API RESTful.
+• PostgreSQL: Banco de dados relacional para armazenamento de informações.
 
 - Outras Ferramentas
-Axios: Comunicação entre FrontEnd e BackEnd.
-Radix UI: Gerenciamento de acessibilidade e modais.
-Biome: Padrões de código.
+• Axios: Comunicação entre FrontEnd e BackEnd.
+• Radix UI: Gerenciamento de acessibilidade e modais.
+• Biome: Padrões de código.
 
 # Pré-requisitos
 Antes de começar, você precisará ter instalado em sua máquina:
-Node.js (versão 16 ou superior)
-PostgreSQL (versão 14 ou superior)
-Git
+• Node.js (versão 16 ou superior)
+• PostgreSQL (versão 14 ou superior)
+• Git
 
 # Instalação
 1. Clone o Repositório
@@ -107,8 +107,8 @@ npm run dev
 
 # Uso
 Acesse o FrontEnd pelo navegador:
-URL: http://localhost:5173
-Adicione, edite ou exclua pedidos diretamente pela interface.
+• URL: http://localhost:5173
+• Adicione, edite ou exclua pedidos diretamente pela interface.
 
 Estrutura de Arquivos:
 ```
@@ -129,13 +129,16 @@ Estrutura de Arquivos:
 ```
 # Endpoints da API
 1. Listar Pedidos
-Método: GET
-URL: /pedidos
-Descrição: Retorna todos os pedidos cadastrados.
+• Método: GET
+• URL: /pedidos
+• Descrição: Retorna todos os pedidos cadastrados.
 
 2. Adicionar Pedido
 Método: POST
-URL: /pedidos
+URL: 
+```
+/pedidos
+```
 Body:
 ```
 {
@@ -147,8 +150,11 @@ Body:
 ```
 
 3. Editar Pedido
-Método: PUT
-URL: /pedidos/:id
+• Método: PUT
+URL: 
+```
+/pedidos/:id
+```
 Body:
 ```
 {
@@ -160,10 +166,9 @@ Body:
 ```
 
 4. Excluir Pedido
-Método: DELETE
-URL: /pedidos/:id
+• Método: DELETE
+• URL: /pedidos/:id
 
 # Licença
-Este projeto está sob a licença MIT. 
-Consulte o arquivo LICENSE para mais informações.
+Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
 
