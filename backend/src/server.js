@@ -42,7 +42,6 @@ app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');
 });
 
-
 app.put('/pedidos/:id', async (req, res) => {
   const { id } = req.params;
   const { vendedor, produto, quantidade, status } = req.body;
