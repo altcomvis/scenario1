@@ -1,10 +1,30 @@
 {
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs20.x" 
+      "runtime": "nodejs20.x",  
+      "memory": 512,           
+      "maxDuration": 10        
     }
   },
   "routes": [
-    { "src": "/api/(.*)", "dest": "backend/$1" }
-  ]
+    { "src": "/api/(.*)", "dest": "backend/$1" } 
+  ],
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/dist"  
+      }
+    },
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "outputDirectory": "frontend/dist",  
+  "framework": "vite",                 
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD", 
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" } ]
 }
