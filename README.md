@@ -61,15 +61,18 @@ git clone https://github.com/altcomvis/scenario1.git
   cd scenario1
 ```
 2. Configuração do BackEnd
-Acesse o diretório do BackEnd:
+- Acesse o diretório do BackEnd:
 ```
   cd backend
 ```
 Instale as dependências:
-  npm install
-
+```
+npm install
+```
 Crie o banco de dados no PostgreSQL:
-  CREATE DATABASE pedidos;
+```
+CREATE DATABASE pedidos;
+```
 
 Configure o arquivo .env:
 ```
@@ -85,7 +88,7 @@ npm run dev
 ```
 
 3. Configuração do FrontEnd
-Acesse o diretório do FrontEnd:
+- Acesse o diretório do FrontEnd:
 ```
 cd frontend
 ```
@@ -134,7 +137,7 @@ Estrutura de Arquivos:
 • Descrição: Retorna todos os pedidos cadastrados.
 
 2. Adicionar Pedido
-Método: POST
+• Método: POST
 URL: 
 ```
 /pedidos
@@ -167,8 +170,10 @@ Body:
 
 4. Excluir Pedido
 • Método: DELETE
-• URL: /pedidos/:id
-
+URL: 
+```
+/pedidos/:id
+```
 # Licença
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
 
