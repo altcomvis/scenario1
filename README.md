@@ -97,8 +97,9 @@ npm run dev
 Acesse o FrontEnd pelo navegador:
 URL: http://localhost:5173
 Adicione, edite ou exclua pedidos diretamente pela interface.
-Estrutura de Arquivos
 
+Estrutura de Arquivos:
+```
 ├── backend
 │   ├── db.js                     # Configuração da conexão com PostgreSQL
 │   ├── server.js                 # Arquivo principal do servidor
@@ -109,11 +110,11 @@ Estrutura de Arquivos
 │   ├── src
 │   │   ├── App.tsx               # Componente principal
 │   │   ├── components
-│   │   │   ├── AddPedido.tsx     # Formulário de adição
-│   │   │   ├── EditPedido.tsx    # Formulário de edição
-│   │   └── styles.css            # Estilização global
-│   └── .env                      # Configurações de ambiente do FrontEnd
-
+│   │   │   ├── add-pedido.tsx     # Formulário de adição
+│   │   │   ├── edit-pedido.tsx    # Formulário de edição
+│   │   └── index.css              # Estilização global
+│   └── .env                       # Configurações de ambiente do FrontEnd
+```
 # Endpoints da API
 1. Listar Pedidos
 Método: GET
