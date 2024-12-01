@@ -1,26 +1,29 @@
 const cors = require('cors');
 const express = require('express');
+const pool = require('./db'); // Certifique-se de que o arquivo db.js está correto
+
 const app = express();
 
+// Configuração de CORS
 const corsOptions = {
   origin: 'https://scenario1-lilac.vercel.app', // Substitua pela URL do frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
 };
 
-app.use(cors(corsOptions)); // Configuração CORS
-app.use(express.json()); // Permite JSON no corpo das requisições
+app.use(cors(corsOptions)); // Ativa CORS
+app.use(express.json()); // Permite processar JSON no corpo das requisições
 
-// Suas rotas aqui
+// Rotas
 app.get('/pedidos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM pedidos');
     res.json(result.rows);
   } catch (err) {
+    console.error(err.message);
     res.status(500).send('Erro no servidor');
   }
 });
-
 
 app.post('/pedidos', async (req, res) => {
   const { vendedor, produto, quantidade, status } = req.body;
@@ -35,11 +38,6 @@ app.post('/pedidos', async (req, res) => {
     console.error(err.message);
     res.status(500).send('Erro ao adicionar pedido');
   }
-});
-
-// Servidor
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
 });
 
 app.put('/pedidos/:id', async (req, res) => {
@@ -63,7 +61,6 @@ app.put('/pedidos/:id', async (req, res) => {
   }
 });
 
-
 app.delete('/pedidos/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -74,4 +71,9 @@ app.delete('/pedidos/:id', async (req, res) => {
     console.error(err.message);
     res.status(500).send('Erro ao excluir pedido');
   }
+});
+
+// Porta
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
 });
