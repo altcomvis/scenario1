@@ -34,33 +34,33 @@ O sistema permite que usuários possam gerenciar pedidos de forma intuitiva e ef
 - Interface Responsiva: Totalmente adaptada para dispositivos móveis e desktops.
 
 # Tecnologias Utilizadas
-- FrontEnd
-• React com Vite: Construção e organização da interface.<br>
-• TailwindCSS: Estilização rápida e responsiva.<br>
-• Shadcn: Gerenciamento de modais e componentes UI avançados.<br>
+- FrontEnd<br>
+React com Vite: Construção e organização da interface.<br>
+TailwindCSS: Estilização rápida e responsiva.<br>
+Shadcn: Gerenciamento de modais e componentes UI avançados.<br>
 
-- BackEnd
-• Node.js com Express: Servidor e API RESTful.<br>
-• PostgreSQL: Banco de dados relacional para armazenamento de informações.<br>
+- BackEnd<br>
+Node.js com Express: Servidor e API RESTful.<br>
+PostgreSQL: Banco de dados relacional para armazenamento de informações.<br>
 
-- Outras Ferramentas
-• Axios: Comunicação entre FrontEnd e BackEnd.<br>
-• Radix UI: Gerenciamento de acessibilidade e modais.<br>
-• Biome: Padrões de código.<br>
+- Outras Ferramentas<br>
+Axios: Comunicação entre FrontEnd e BackEnd.<br>
+Radix UI: Gerenciamento de acessibilidade e modais.<br>
+Biome: Padrões de código.<br>
 
 # Pré-requisitos
 Antes de começar, você precisará ter instalado em sua máquina:<br>
-• Node.js (versão 16 ou superior)<br>
-• PostgreSQL (versão 14 ou superior)<br>
-• Git<br>
+Node.js (versão 16 ou superior)<br>
+PostgreSQL (versão 14 ou superior)<br>
+Git<br>
 
 # Instalação
 1. Clone o Repositório
 ```
 git clone https://github.com/altcomvis/scenario1.git
-  cd scenario1
+cd scenario1
 ```
-2. Configuração do BackEnd<br>
+2. Configuração do BackEnd<br><br>
 Acesse o diretório do BackEnd:
 ```
   cd backend
@@ -87,7 +87,7 @@ Inicie o servidor:
 npm run dev
 ```
 
-3. Configuração do FrontEnd<br>
+3. Configuração do FrontEnd<br><br>
 Acesse o diretório do FrontEnd:
 ```
 cd frontend
