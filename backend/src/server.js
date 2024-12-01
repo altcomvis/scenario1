@@ -22,7 +22,7 @@ app.get('/api/pedidos', async (req, res) => {
 });
 
 
-app.post('/pedidos', async (req, res) => {
+app.post('/api/pedidos', async (req, res) => {
   const { vendedor, produto, quantidade, status } = req.body;
 
   try {
@@ -43,7 +43,7 @@ app.listen(3000, () => {
 });
 
 
-app.put('/pedidos/:id', async (req, res) => {
+app.put('/api/pedidos/:id', async (req, res) => {
   const { id } = req.params;
   const { vendedor, produto, quantidade, status } = req.body;
 
@@ -65,7 +65,7 @@ app.put('/pedidos/:id', async (req, res) => {
 });
 
 
-app.delete('/pedidos/:id', async (req, res) => {
+app.delete('/api/pedidos/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
