@@ -12,7 +12,7 @@ app.use(cors(corsOptions)); // Configuração CORS
 app.use(express.json()); // Permite JSON no corpo das requisições
 
 // Suas rotas aqui
-app.get('/api/pedidos', async (req, res) => {
+app.get('/pedidos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM pedidos');
     res.json(result.rows);
@@ -22,7 +22,7 @@ app.get('/api/pedidos', async (req, res) => {
 });
 
 
-app.post('/api/pedidos', async (req, res) => {
+app.post('/pedidos', async (req, res) => {
   const { vendedor, produto, quantidade, status } = req.body;
 
   try {
@@ -43,7 +43,7 @@ app.listen(3000, () => {
 });
 
 
-app.put('/api/pedidos/:id', async (req, res) => {
+app.put('/pedidos/:id', async (req, res) => {
   const { id } = req.params;
   const { vendedor, produto, quantidade, status } = req.body;
 
@@ -65,7 +65,7 @@ app.put('/api/pedidos/:id', async (req, res) => {
 });
 
 
-app.delete('/api/pedidos/:id', async (req, res) => {
+app.delete('/pedidos/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
