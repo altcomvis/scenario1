@@ -1,9 +1,6 @@
-# Gerenciamento de Pedidos - Situação Problema 1
+# Gerenciamento de Pedidos - Situação Problema 2
 
-Este projeto foi desenvolvido como solução para a Situação Problema 1 
-no contexto do Projeto Integrador Transdisciplinar em Engenharia de Software II. 
-Ele permite o gerenciamento de pedidos, incluindo funcionalidades para adicionar, 
-editar e excluir pedidos.
+Este projeto foi desenvolvido para resolver a Situação-Problema 2, onde um cliente desejava criar um módulo complexo utilizando ferramentas no-code. Após análise, ficou evidente que o no-code não atenderia às necessidades devido às limitações em regras de negócio complexas, integrações e escalabilidade. Foi proposto um desenvolvimento low-code para criar o módulo.
 
 
 Tabela de Conteúdos
@@ -115,20 +112,26 @@ Acesse o FrontEnd pelo navegador:<br>
 
 Estrutura de Arquivos:
 ```
-├── backend
-│   ├── db.js                     # Configuração da conexão com PostgreSQL
-│   ├── server.js                 # Arquivo principal do servidor
-│   ├── routes
-│   │   └── pedidos.js            # Endpoints relacionados aos pedidos
-│   └── .env                      # Configurações sensíveis do banco
-├── frontend
-│   ├── src
-│   │   ├── App.tsx               # Componente principal
-│   │   ├── components
-│   │   │   ├── add-pedido.tsx     # Formulário de adição
-│   │   │   ├── edit-pedido.tsx    # Formulário de edição
-│   │   └── index.css              # Estilização global
-│   └── .env                       # Configurações de ambiente do FrontEnd
+├── backend/
+│   ├── src/
+│   │   ├── server.js         # Arquivo principal do backend
+│   │   ├── db.js             # Configuração da conexão com o banco de dados
+│   │   ├── routes/
+│   │   │   ├── produtos.js   # Rotas para gerenciamento de produtos
+│   │   │   ├── pedidos.js    # Rotas para gerenciamento de pedidos
+│   └── package.json          # Dependências do backend
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.tsx           # Componente principal do frontend
+│   │   ├── components/
+│   │   │   ├── Produtos.tsx  # Componente para gerenciar produtos
+│   │   │   ├── Pedidos.tsx   # Componente para gerenciar pedidos
+│   └── package.json          # Dependências do frontend
+│
+├── README.md                 # Documentação do projeto
+└── vercel.json               # Configuração para deploy na Vercel
+
 ```
 # Endpoints da API
 1. Listar Pedidos<br>

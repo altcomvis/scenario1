@@ -1,136 +1,216 @@
-import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import axios from 'axios'
-import AddPedido from './components/add-pedido'
-import EditPedido from './components/edit-pedido'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { ShoppingBag, User2Icon } from 'lucide-react';
+import Logo from './assets/logo.svg';
+import LogoWhite from './assets/logo-white.svg';
+import { Input } from './components/ui/input';
+import { Button } from './components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
-interface Pedido {
-  id: number
-  vendedor: string
-  produto: string
-  quantidade: number
-  status: string
+// Tipos e interfaces
+interface Produto {
+  id: number;
+  nome: string;
+  preco: number;
+  imagem: string;
+}
+
+interface CarrinhoItem extends Produto {
+  quantidade: number;
 }
 
 const App = () => {
-  const [pedidos, setPedidos] = useState<Pedido[]>([])
-  const [pedidoParaEditar, setPedidoParaEditar] = useState<Pedido | null>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [carrinho, setCarrinho] = useState<CarrinhoItem[]>([]);
+  const [busca, setBusca] = useState('');
 
-  const fetchPedidos = async () => {
+  // Função para buscar os produtos no backend
+  const fetchProdutos = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/pedidos`
-      )
-      setPedidos(response.data)
+        `${import.meta.env.VITE_API_URL}/produtos`
+      );
+      setProdutos(response.data);
     } catch (error) {
-      console.error('Erro ao buscar pedidos:', error)
+      console.error('Erro ao buscar produtos:', error);
     }
-  }
+  };
 
-  const onDelete = async (id: number) => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/pedidos/${id}`)
-      fetchPedidos() // Atualiza a lista após exclusão
-    } catch (error) {
-      console.error('Erro ao excluir pedido:', error)
-    }
-  }
+  // Função para adicionar um item ao carrinho
+  const adicionarAoCarrinho = (produto: Produto) => {
+    setCarrinho((prevCarrinho) => {
+      const itemExistente = prevCarrinho.find(
+        (item) => item.id === produto.id
+      );
+      if (itemExistente) {
+        return prevCarrinho.map((item) =>
+          item.id === produto.id
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        );
+      }
+      return [...prevCarrinho, { ...produto, quantidade: 1 }];
+    });
+  };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // Função para remover um item do carrinho
+  const removerDoCarrinho = (id: number) => {
+    setCarrinho((prevCarrinho) =>
+      prevCarrinho.filter((item) => item.id !== id)
+    );
+  };
+
+  // Total do carrinho
+  const valorTotal = carrinho.reduce(
+    (total, item) => total + item.preco * item.quantidade,
+    0
+  );
+
   useEffect(() => {
-    fetchPedidos()
-  }, [])
+    fetchProdutos();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="flex items-center justify-between py-3">
-        <h1 className="text-xl md:text-3xl font-bold">Lista de Pedidos</h1>
-        <Dialog
-          open={isDialogOpen}
-          onOpenChange={isOpen => setIsDialogOpen(isOpen)}
-        >
-          <DialogTrigger asChild>
-            <Button variant="outline">Adicionar Pedido</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Adicionar Pedido</DialogTitle>
-            </DialogHeader>
-            <AddPedido
-              onAdd={() => {
-                axios
-                  .get(`${import.meta.env.VITE_API_URL}/pedidos`)
-                  .then(response => setPedidos(response.data))
-              }}
-            />
-          </DialogContent>
-        </Dialog>
+    <div className='w-full'>
+      {/* Header */}
+      <div className='bg-rose-100 h-24 flex justify-between items-center px-20'>
+        <div className='flex gap-20 items-center'>
+          <img src={Logo} className='w-24' alt='Logo' />
+          <nav className='flex gap-6'>
+            <a href='#' className='hover:opacity-50'>
+              Home
+            </a>
+            <a href='#' className='hover:opacity-50'>
+              Categorias
+            </a>
+        
+            <a href='#' className='hover:opacity-50'>
+              Perfil
+            </a>
+          </nav>
+        </div>
+        <div className='flex gap-4 items-center'>
+          <Sheet>
+            <SheetTrigger asChild>
+              <div className='relative'>
+                <div className='absolute bg-black text-white rounded-full px-1 text-xs -top-2 -right-1 cursor-pointer'>
+                  {carrinho.length}
+                </div>
+                <ShoppingBag className='size-6 cursor-pointer' strokeWidth={1.5} />
+              </div>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Carrinho de Compras</SheetTitle>
+              </SheetHeader>
+              <div className='grid grid-cols-2 gap-2 py-4'>
+                {carrinho.map((item) => (
+                  <div
+                    key={item.id}
+                    className='bg-white flex flex-col gap-2 p-6'
+                  >
+                    <img src={item.imagem} alt={item.nome} />
+                    <span className='text-base font-bold'>{item.nome}</span>
+                    <span className='text-2xl font-extrabold'>
+                      R$ {item.preco.toFixed(2)}
+                    </span>
+                    <span className='text-sm'>
+                      Quantidade: {item.quantidade}
+                    </span>
+                    <Button
+                      className='bg-pink-600'
+                      onClick={() => removerDoCarrinho(item.id)}
+                    >
+                      Remover
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              <div className='flex flex-col gap-4'>
+                <div className='flex flex-col'>
+                  <span className='text-base font-bold'>Valor Total:</span>
+                  <span className='text-2xl font-extrabold'>
+                    R$ {valorTotal.toFixed(2)}
+                  </span>
+                </div>
+                <SheetClose asChild>
+                  <Button className='bg-pink-600' type='submit'>
+                    Finalizar compra
+                  </Button>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
+
+          <Input
+            className='h-8 w-64'
+            placeholder='Buscar'
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+          />
+          <User2Icon strokeWidth={1.5} />
+        </div>
       </div>
 
-      <ul className="bg-white shadow-md rounded p-4">
-      {pedidos.length > 0 ? (
-    pedidos.map((pedido) => (
-          <li
-            key={pedido.id}
-            className="border-b text-xs md:text-base p-2 flex justify-between items-center"
-          >
-            <span>
-              <strong>{pedido.vendedor}</strong> - {pedido.produto} (
-              {pedido.quantidade}) - {pedido.status}
-            </span>
-            <div className="flex gap-2">
-              <Dialog
-                open={pedidoParaEditar === pedido} // Garante que apenas o modal correto será aberto
-                onOpenChange={isOpen => {
-                  if (!isOpen) {
-                    setPedidoParaEditar(null) // Reseta o estado ao fechar
-                  }
-                }}
-              >
-                <DialogTrigger asChild>
+      {/* Produtos */}
+      <div className='bg-stone-50 py-12'>
+        <div className='w-10/12 mx-auto'>
+          <span className='text-xl font-extrabold'>Selecionar itens</span>
+          <hr />
+          <div className='flex flex-wrap py-6 gap-4'>
+            {produtos
+              .filter((produto) =>
+                produto.nome.toLowerCase().includes(busca.toLowerCase())
+              )
+              .map((produto) => (
+                <div
+                  key={produto.id}
+                  className='bg-white flex flex-col gap-3 p-6'
+                >
+                  <img src={produto.imagem} alt={produto.nome} />
+                  <div className='flex flex-col gap-1'>
+                    <span className='text-base font-bold'>{produto.nome}</span>
+                    <span className='text-2xl font-extrabold'>
+                      R$ {produto.preco.toFixed(2)}
+                    </span>
+                  </div>
                   <Button
-                    variant="outline"
-                    onClick={() => setPedidoParaEditar(pedido)} className='text-xs'
+                    className='bg-pink-600'
+                    onClick={() => adicionarAoCarrinho(produto)}
                   >
-                    Editar
+                    Adicionar ao Carrinho
                   </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Editar Pedido</DialogTitle>
-                  </DialogHeader>
-                  {pedidoParaEditar && (
-                    <EditPedido
-                      pedido={pedidoParaEditar}
-                      onEdit={fetchPedidos} // Atualiza a lista após edição
-                      onClose={() => setPedidoParaEditar(null)} // Fecha o modal e reseta o estado
-                    />
-                  )}
-                </DialogContent>
-              </Dialog>
-              <Button variant="destructive"
-                onClick={() => onDelete(pedido.id)}
-                className="text-xs"
-              >
-                Excluir
-              </Button>
-            </div>
-          </li>
-       ))
-      ) : (
-        <p className="text-gray-500 text-center">Lista vazia</p>
-      )}
-      </ul>
-    </div>
-  )
-}
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
 
-export default App
+      {/* Footer */}
+      <div className='flex flex-col items-center justify-center py-16 bg-orange-950 gap-8'>
+        <img src={LogoWhite} className='w-24' alt='Logo' />
+        <nav className='flex gap-6 text-white text-sm'>
+          <a href='#' className='hover:opacity-50'>
+            Home
+          </a>
+          <a href='#' className='hover:opacity-50'>
+            Categorias
+          </a>
+        
+          <a href='#' className='hover:opacity-50'>
+            Perfil
+          </a>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
+export default App;
