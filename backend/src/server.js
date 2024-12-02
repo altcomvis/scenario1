@@ -11,7 +11,7 @@ app.use(express.json()); // Permite JSON no corpo das requisições
 // Rotas
 
 // 1. Listar produtos
-app.get('/produtos', async (req, res) => {
+app.get('/api/produtos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM produtos');
     const produtos = result.rows.map(produto => ({
@@ -26,7 +26,7 @@ app.get('/produtos', async (req, res) => {
 
 
 // 2. Adicionar produto ao carrinho
-app.post('/carrinho', async (req, res) => {
+app.post('/api/carrinho', async (req, res) => {
   const { produtoId, quantidade } = req.body;
 
   try {
@@ -42,7 +42,7 @@ app.post('/carrinho', async (req, res) => {
 });
 
 // 3. Remover produto do carrinho
-app.delete('/carrinho/:id', async (req, res) => {
+app.delete('/api/carrinho/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -55,7 +55,7 @@ app.delete('/carrinho/:id', async (req, res) => {
 });
 
 // 4. Confirmar método de entrega
-app.post('/entrega', async (req, res) => {
+app.post('/api/entrega', async (req, res) => {
   const { metodo, preco } = req.body;
 
   try {
@@ -71,7 +71,7 @@ app.post('/entrega', async (req, res) => {
 });
 
 // 5. Simular pagamento
-app.post('/pagamento', (req, res) => {
+app.post('/api/pagamento', (req, res) => {
   const { nomeCartao, numeroCartao, validade, cvv } = req.body;
 
   // Simulação: sempre retorna sucesso
