@@ -30,18 +30,31 @@ const App = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [carrinho, setCarrinho] = useState<CarrinhoItem[]>([]);
   const [busca, setBusca] = useState('');
-
-  // Função para buscar os produtos no backend
   const fetchProdutos = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/produtos`
-      );
-      setProdutos(response.data);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/produtos`);
+      if (Array.isArray(response.data)) {
+        setProdutos(response.data);
+      } else {
+        console.error("Resposta inesperada da API:", response.data);
+      }
     } catch (error) {
-      console.error('Erro ao buscar produtos:', error);
+      console.error("Erro ao buscar produtos:", error);
     }
   };
+  
+  // Função para buscar os produtos no backend
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/produtos`)
+      .then((response) => {
+        console.log('Dados recebidos da API:', response.data); // Debug
+        setProdutos(response.data); // Configura o estado
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar produtos:', error);
+      });
+  }, []);
 
   // Função para adicionar um item ao carrinho
   const adicionarAoCarrinho = (produto: Produto) => {
@@ -164,32 +177,41 @@ const App = () => {
         <div className='w-10/12 mx-auto'>
           <span className='text-xl font-extrabold'>Selecionar itens</span>
           <hr />
-          <div className='flex flex-wrap py-6 gap-4'>
-            {produtos
-              .filter((produto) =>
-                produto.nome.toLowerCase().includes(busca.toLowerCase())
-              )
-              .map((produto) => (
-                <div
-                  key={produto.id}
-                  className='bg-white flex flex-col gap-3 p-6'
-                >
-                  <img src={produto.imagem} alt={produto.nome} />
-                  <div className='flex flex-col gap-1'>
-                    <span className='text-base font-bold'>{produto.nome}</span>
-                    <span className='text-2xl font-extrabold'>
-                      R$ {produto.preco.toFixed(2)}
-                    </span>
-                  </div>
-                  <Button
-                    className='bg-pink-600'
-                    onClick={() => adicionarAoCarrinho(produto)}
-                  >
-                    Adicionar ao Carrinho
-                  </Button>
-                </div>
-              ))}
+          <div className="flex flex-wrap py-6 gap-4">
+  {produtos.length > 0 ? (
+    produtos
+      .filter((produto) =>
+        produto.nome.toLowerCase().includes(busca.toLowerCase())
+      )
+      .map((produto) => (
+        <div
+          key={produto.id}
+          className="bg-white flex flex-col gap-3 p-6 shadow-sm"
+        >
+          <img
+            src={produto.imagem}
+            alt={produto.nome}
+            className="w-full h-32 object-cover"
+          />
+          <div className="flex flex-col gap-1">
+            <span className="text-base font-bold">{produto.nome}</span>
+            <span className="text-2xl font-extrabold">
+              R$ {produto.preco.toFixed(2)}
+            </span>
           </div>
+          <Button
+            className="bg-pink-600"
+            onClick={() => adicionarAoCarrinho(produto)}
+          >
+            Adicionar ao Carrinho
+          </Button>
+        </div>
+      ))
+  ) : (
+    <p className="text-gray-500 text-center w-full">Nenhum produto encontrado.</p>
+  )}
+</div>
+
         </div>
       </div>
 
