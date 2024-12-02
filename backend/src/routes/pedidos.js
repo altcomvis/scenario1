@@ -1,5 +1,5 @@
 const express = require('express');
-const pool = require('./models/db'); // Certifique-se de que o pool está corretamente configurado
+const pool = require('../db'); // Certifique-se de que o pool está corretamente configurado
 
 const app = express();
 const PORT = 3000;
