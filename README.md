@@ -1,182 +1,94 @@
-# Gerenciamento de Pedidos - Situação Problema 2
+# Queque Cupcakes - Aplicação E-Commerce
+# Descrição do Projeto
+O Queque Cupcakes é uma aplicação de e-commerce desenvolvida para simular o fluxo de compra de produtos (cupcakes) em um ambiente digital. Este projeto tem como objetivo oferecer uma experiência intuitiva e funcional para o usuário, permitindo selecionar produtos, adicioná-los ao carrinho, realizar o pagamento e definir uma opção de entrega.<br><br>
 
-Este projeto foi desenvolvido para resolver a Situação-Problema 2, onde um cliente desejava criar um módulo complexo utilizando ferramentas no-code. Após análise, ficou evidente que o no-code não atenderia às necessidades devido às limitações em regras de negócio complexas, integrações e escalabilidade. Foi proposto um desenvolvimento low-code para criar o módulo.
-
-
-Tabela de Conteúdos
-- Visão Geral
-- Funcionalidades
-- Tecnologias Utilizadas
-- Pré-requisitos
-- Instalação
-- Uso
-- Estrutura de Arquivos
-- Endpoints da API
-- Licença
-
-
-# Visão Geral
-O sistema permite que usuários possam gerenciar pedidos de forma intuitiva e eficiente. Com ele, é possível:
-
-- Cadastrar novos pedidos.
-- Atualizar informações dos pedidos existentes.
-- Excluir pedidos indesejados.
-- Visualizar a lista de pedidos em uma interface amigável.
-- O objetivo principal é demonstrar a integração entre o FrontEnd (React) e o BackEnd (Node.js com PostgreSQL).
+A aplicação foi construída com foco em boas práticas de desenvolvimento web moderno, utilizando ferramentas, bibliotecas e frameworks atuais para um design responsivo e interatividade avançada.<br>
 
 # Funcionalidades
-- Adicionar Pedidos: Insira dados como vendedor, produto, quantidade e status.
-- Editar Pedidos: Atualize as informações dos pedidos diretamente na interface.
-- Excluir Pedidos: Remova pedidos da lista com facilidade.
-- Interface Responsiva: Totalmente adaptada para dispositivos móveis e desktops.
+- Página de Galeria:<br>
+Exibe uma lista de produtos (cupcakes) com seus respectivos preços, imagens e descrições.<br>
+Opção de adicionar produtos ao carrinho.<br>
+- Carrinho de Compras:<br>
+Visualização dos itens selecionados.<br>
+Remoção de itens do carrinho.<br>
+Cálculo automático do valor total.<br>
+- Pagamento:<br>
+Formulário para pagamento com cartão.<br>
+Opção de pagamento via PIX com exibição de QR Code.<br>
+Dialogs (modais) informativos sobre o status do pagamento.<br>
+- Entrega:<br>
+Escolha do método de entrega (PAC, Sedex Expressa ou Sedex 10).<br>
+Cálculo automático do valor de entrega.<br>
+Confirmação de entrega com modais interativos.<br>
+- Fluxo Completo:<br>
+Navegação intuitiva entre as etapas: Galeria → Pagamento → Entrega.<br>
+Retorno à página inicial ao finalizar o processo.<br>
 
 # Tecnologias Utilizadas
-- FrontEnd<br>
-React com Vite: Construção e organização da interface.<br>
-TailwindCSS: Estilização rápida e responsiva.<br>
-Shadcn: Gerenciamento de modais e componentes UI avançados.<br>
-
-- BackEnd<br>
-Node.js com Express: Servidor e API RESTful.<br>
-PostgreSQL: Banco de dados relacional para armazenamento de informações.<br>
-
-- Outras Ferramentas<br>
-Axios: Comunicação entre FrontEnd e BackEnd.<br>
-Radix UI: Gerenciamento de acessibilidade e modais.<br>
-Biome: Padrões de código.<br>
-
-# Pré-requisitos
-Antes de começar, você precisará ter instalado em sua máquina:<br>
-Node.js (versão 16 ou superior)<br>
-PostgreSQL (versão 14 ou superior)<br>
-Git<br>
-
-# Instalação
-1. Clone o Repositório
+- Frontend<br>
+React.js com TypeScript: Framework para criação de interfaces modernas e reativas.<br>
+ShadCN: Biblioteca para componentes UI reutilizáveis.<br>
+Axios: Para comunicação com APIs externas.<br>
+TailwindCSS: Estilização responsiva e altamente customizável.<br>
+- Componentes<br>
+Dialogs (ShadCN): Para exibição de modais interativos.<br>
+Button, Input (ShadCN): Componentes reutilizáveis para interações.<br>
+RadioGroup: Escolha de opções no fluxo de entrega.<br>
+# Instalação e Execução
+- Pré-requisitos<br>
+Node.js versão 18.x ou superior.<br>
+Gerenciador de pacotes: NPM ou Yarn.<br>
+- Passos<br>
+Clone o repositório:
 ```
 git clone https://github.com/altcomvis/scenario1.git
+```
+Entre no diretório do projeto:
+```
 cd scenario1
 ```
-2. Configuração do BackEnd<br><br>
-Acesse o diretório do BackEnd:
-```
-  cd backend
-```
 Instale as dependências:
 ```
 npm install
 ```
-Crie o banco de dados no PostgreSQL:
-```
-CREATE DATABASE pedidos;
-```
-
-Configure o arquivo .env:
-```
-  DB_HOST=localhost
-  DB_PORT=5432
-  DB_USER=postgres
-  DB_PASSWORD=sua_senha
-  DB_NAME=pedidos
-```
-Inicie o servidor:
+Configure a URL da API:<br>
+Renomeie o arquivo .env.example para .env.<br>
+Substitua o valor da variável VITE_API_URL pela URL da sua API.<br>
+Execute o projeto:
 ```
 npm run dev
 ```
+# Estrutura de Diretórios
+```
+src/
+├── components/
+│   ├── Header.tsx
+│   ├── Galeria.tsx
+│   ├── Pagamento.tsx
+│   ├── Entrega.tsx
+│   ├── Resumo.tsx
+│   └── ui/         # Componentes reutilizáveis do ShadCN
+├── assets/         # Imagens e recursos estáticos
+├── App.tsx         # Arquivo principal
+├── index.tsx       # Ponto de entrada da aplicação
+```
+# Fluxo da Aplicação
+Galeria: O usuário visualiza os produtos e adiciona ao carrinho.<br>
+Carrinho: Ao clicar no ícone do carrinho, o usuário pode revisar os itens selecionados.<br>
+Pagamento: O usuário escolhe entre pagar com cartão ou PIX. Modais interativos confirmam o pagamento.<br>
+Entrega: O usuário seleciona o método de entrega e conclui o pedido.<br>
+Finalização: A aplicação retorna à Galeria após a confirmação.<br>
 
-3. Configuração do FrontEnd<br><br>
-Acesse o diretório do FrontEnd:
-```
-cd frontend
-```
+# Contribuição
+Faça um fork do projeto.<br>
+Crie um branch para sua feature: git checkout -b minha-feature.<br>
+Faça as alterações e adicione commits: git commit -m 'Minha nova feature'.<br>
+Envie o branch para o repositório: git push origin minha-feature.<br>
+Abra um Pull Request explicando as mudanças.<br>
 
-Instale as dependências:
-```
-npm install
-```
-
-Configure o arquivo .env:
-```
-VITE_API_URL=http://localhost:3000
-```
-
-Inicie o FrontEnd:
-```
-npm run dev
-```
-
-# Uso
-Acesse o FrontEnd pelo navegador:<br>
-• URL: http://localhost:5173<br>
-• Adicione, edite ou exclua pedidos diretamente pela interface.<br>
-
-Estrutura de Arquivos:
-```
-├── backend/
-│   ├── src/
-│   │   ├── server.js         # Arquivo principal do backend
-│   │   ├── db.js             # Configuração da conexão com o banco de dados
-│   │   ├── routes/
-│   │   │   ├── produtos.js   # Rotas para gerenciamento de produtos
-│   │   │   ├── pedidos.js    # Rotas para gerenciamento de pedidos
-│   └── package.json          # Dependências do backend
-│
-├── frontend/
-│   ├── src/
-│   │   ├── App.tsx           # Componente principal do frontend
-│   │   ├── components/
-│   │   │   ├── Produtos.tsx  # Componente para gerenciar produtos
-│   │   │   ├── Pedidos.tsx   # Componente para gerenciar pedidos
-│   └── package.json          # Dependências do frontend
-│
-├── README.md                 # Documentação do projeto
-└── vercel.json               # Configuração para deploy na Vercel
-
-```
-# Endpoints da API
-1. Listar Pedidos<br>
-• Método: GET<br>
-• URL: /pedidos<br>
-• Descrição: Retorna todos os pedidos cadastrados.<br>
-
-2. Adicionar Pedido<br>
-• Método: POST<br>
-URL: 
-```
-/pedidos
-```
-Body:
-```
-{
-  "vendedor": "João",
-  "produto": "Caneta",
-  "quantidade": 10,
-  "status": "pendente"
-}
-```
-
-3. Editar Pedido<br>
-• Método: PUT<br>
-URL: 
-```
-/pedidos/:id
-```
-Body:
-```
-{
-  "vendedor": "Maria",
-  "produto": "Lápis",
-  "quantidade": 20,
-  "status": "aprovado"
-}
-```
-
-4. Excluir Pedido<br>
-• Método: DELETE<br>
-URL: 
-```
-/pedidos/:id
-```
 # Licença
-Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
+Este projeto está licenciado sob a MIT License.
 
+# Autor
+Desenvolvido por Allan Teixeira.<br>
+Entre em contato para dúvidas ou colaborações! 😊
